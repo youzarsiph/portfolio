@@ -1,0 +1,59 @@
+{% extends 'portfolio/base/base_site.html' %}
+{% load i18n static %}
+{% block title %}{% translate 'Youzarsiph Portfolio' %}{% endblock %}
+{% block main %}
+    <div class="container-fluid">
+        {% if messages %}
+            {% include 'portfolio/includes/components/messages.html' %}
+        {% endif %}
+        <div class="row g-4">
+            <div class="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center">
+                <div class="p-3 p-md-4 p-lg-5">
+                    <h1 class="display-1">
+                        {% translate 'Hello I am ' %}
+                        {% spaceless %}
+                            <span class="fw-bold">
+                                <span class="text-primary">Y</span>
+                                <span class="text-danger">o</span>
+                                <span class="text-warning">u</span>
+                                <span class="text-primary">z</span>
+                                <span class="text-success">a</span>
+                                <span class="text-danger">r</span>
+                                <span class="text-primary">s</span>
+                                <span class="text-danger">i</span>
+                                <span class="text-warning">p</span>
+                                <span class="text-primary">h</span>
+                            </span>
+                        {% endspaceless %}
+                    </h1>
+                    <h2 class="lead fs-2">
+                        {% translate 'My name is Yousef Abu Shanab' %}
+                    </h2>
+                    <p class="lead">
+                        {% blocktranslate %}
+                            I am a full stack developer
+                        {% endblocktranslate %}
+                    </p>
+                    <h2>
+                        {% translate 'My Skills' %}
+                    </h2>
+                    <div class="d-flex gap-4 flex-wrap">
+                        {% for skill in skill_list %}
+                            <span class="badge bg-{% cycle 'primary' 'danger' 'warning' 'primary' 'success' 'danger' 'primary' 'danger' 'warning' 'primary' %} shadow-sm px-3 py-2">
+                                {{ skill.name }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 p-3 p-md-4 p-lg-5">
+                <img src="{% static 'portfolio/img/profile.png' %}" alt="{% translate 'Yousef Abu Shanab' %}"
+                     class="card-img shadow rounded-3">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'portfolio/includes/components/footer.html' with message_form=1 %}
+{% endblock %}

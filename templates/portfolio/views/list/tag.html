@@ -1,0 +1,85 @@
+{% extends 'portfolio/views/list/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Tags' %}{% endblock %}
+{% block breadcrumb_item %}{% translate 'Tags' %}{% endblock %}
+{% block page_title %}{% translate 'Tags' %}{% endblock %}
+{% block create_link %}{% url 'portfolio:create_tag' %}{% endblock %}
+{% block table %}
+    <table class="table table-hover mb-0">
+        <thead>
+        <tr>
+            <th>
+                {% translate 'ID' %}
+            </th>
+            <th>
+                {% translate 'Name' %}
+            </th>
+            <th>
+                {% translate 'Color' %}
+            </th>
+            <th>
+                {% translate 'Created' %}
+            </th>
+            <th>
+                {% translate 'Updated' %}
+            </th>
+            <th>
+                {% translate 'Actions' %}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tag in tag_list %}
+            <tr>
+                <td>
+                    {{ tag.id }}
+                </td>
+                <td>
+                    {{ tag.name }}
+                </td>
+                <td>
+                    <span class="text-{{ tag.color }}">
+                        {{ tag.color }}
+                    </span>
+                </td>
+                <td>
+                    {{ tag.created_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    {{ tag.updated_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <a href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <div class="dropdown-menu rounded-3 shadow">
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:edit_tag' tag.id %}">
+                                    <i class="bi bi-pencil"></i>
+                                    {% translate 'Edit' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:delete_tag' tag.id %}">
+                                    <i class="bi bi-trash"></i>
+                                    {% translate 'Delete' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">
+                    {% translate 'No tag found' %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block count %}{{ tag_list.count }} {% translate 'tags' %}{% endblock %}

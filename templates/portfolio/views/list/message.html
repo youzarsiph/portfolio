@@ -1,0 +1,46 @@
+{% extends 'portfolio/views/list/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Messages' %}{% endblock %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">
+        {% translate 'Messages' %}
+    </li>
+{% endblock %}
+{% block content %}
+    <h1 class="display-1">
+        {% translate 'Messages' %}
+    </h1>
+    <div class="row g-4">
+        {% for message in message_list %}
+            <div class="col-12 col-lg-6">
+                <div class="card rounded-3 shadow">
+                    <div class="d-flex align-items-center justify-content-between border-bottom">
+                        <div class="bg-dark text-white py-3 px-4" style="border-top-left-radius: 0.3rem;">
+                            {{ message.name|slice:'0:1' }}
+                        </div>
+                        <div class="card-header bg-white border-bottom-0 lead">
+                            {{ message.name }}
+                        </div>
+                        <small class="text-muted pe-3">
+                            {{ message.created_at|timesince }}
+                        </small>
+                    </div>
+                    <div class="card-body">
+                        <small class="d-flex align-items-center justify-content-between text-muted mb-3">
+                            <a href="mailto:{{ message.email }}">
+                                {{ message.email }}
+                            </a>
+                            <a href="{% url 'portfolio:delete_message' message.id %}">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </small>
+                        <p class="card-text">
+                            {{ message.content }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+        {% endfor %}
+    </div>
+{% endblock %}

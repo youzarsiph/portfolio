@@ -1,0 +1,17 @@
+{% extends 'portfolio/views/delete/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Delete Message' %}{% endblock %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'portfolio:message_list' %}">
+            {% translate 'Messages' %}
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        {{ message.name }}
+    </li>
+    <li class="breadcrumb-item active">
+        {% translate 'Delete' %}
+    </li>
+{% endblock %}
+{% block page_title %}{% translate 'Delete Message' %}{% endblock %}

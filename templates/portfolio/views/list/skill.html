@@ -1,0 +1,80 @@
+{% extends 'portfolio/views/list/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Skills' %}{% endblock %}
+{% block breadcrumb_item %}{% translate 'Skills' %}{% endblock %}
+{% block page_title %}{% translate 'Skills' %}{% endblock %}
+{% block create_link %}{% url 'portfolio:create_skill' %}{% endblock %}
+{% block table %}
+    <table class="table table-hover mb-0">
+        <thead>
+        <tr>
+            <th>
+                {% translate 'ID' %}
+            </th>
+            <th>
+                {% translate 'Name' %}
+            </th>
+            <th>
+                {% translate 'Created' %}
+            </th>
+            <th>
+                {% translate 'Updated' %}
+            </th>
+            <th>
+                {% translate 'Actions' %}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for skill in skill_list %}
+            <tr>
+                <td>
+                    {{ skill.id }}
+                </td>
+                <td>
+                    {{ skill.name|capfirst }}
+                </td>
+                <td>
+                    {{ skill.created_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    {{ skill.updated_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <a href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <div class="dropdown-menu rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Skill Menu' %}
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:edit_skill' skill.id %}">
+                                    <i class="bi bi-pencil"></i>
+                                    {% translate 'Edit' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:delete_skill' skill.id %}">
+                                    <i class="bi bi-trash"></i>
+                                    {% translate 'Delete' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">
+                    {% translate 'No skill found' %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block count %}{{ skill_list.count }} {% translate 'skills' %}{% endblock %}

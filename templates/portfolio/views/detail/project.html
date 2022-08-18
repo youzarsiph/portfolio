@@ -1,0 +1,20 @@
+{% extends 'portfolio/base/base_site.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Project details' %}{% endblock %}
+{% block content %}
+    <h1 class="display-1 text-warning">
+        {{ project.name|capfirst }}
+    </h1>
+    <p class="lead">
+        {{ project.about }}
+    </p>
+    <h2>
+        {% translate 'Description' %}
+    </h2>
+    <p>
+        {{ project.description }}
+    </p>
+    <a class="btn btn-lg btn-primary" href="{{ project.url }}">
+        {% translate 'View' %}
+    </a>
+{% endblock %}

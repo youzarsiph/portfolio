@@ -1,0 +1,16 @@
+{# Base template for structuring the HTML and extending. #}
+{% extends 'portfolio/base/base.html' %}
+{% load i18n %}
+{% block header %}
+    {# Navbar here #}
+    {% include 'portfolio/includes/components/navbar.html' with bg_color='dark' %}
+{% endblock %}
+{% block main %}
+    {# Content here. #}
+    <section class="container pt-4">
+        {% if messages %}
+            {% include 'portfolio/includes/components/messages.html' %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </section>
+{% endblock %}

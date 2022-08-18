@@ -1,0 +1,14 @@
+{% extends 'portfolio/views/edit/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Edit Project' %}{% endblock %}
+{% block breadcrumb_item %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'portfolio:project_list' %}">
+            {% translate 'Projects' %}
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        {{ project|capfirst }}
+    </li>
+{% endblock %}
+{% block page_title %}{% translate 'Edit Project' %}{% endblock %}

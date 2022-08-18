@@ -1,0 +1,14 @@
+{% extends 'portfolio/views/edit/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Edit Badge' %}{% endblock %}
+{% block breadcrumb_item %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'portfolio:badge_list' %}">
+            {% translate 'Badges' %}
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        {{ badge|capfirst }}
+    </li>
+{% endblock %}
+{% block page_title %}{% translate 'Edit Badge' %}{% endblock %}

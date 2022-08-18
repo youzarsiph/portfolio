@@ -1,0 +1,14 @@
+{% extends 'portfolio/views/delete/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Delete Certificate' %}{% endblock %}
+{% block breadcrumb_item %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'portfolio:certificate_list' %}">
+            {% translate 'Certificates' %}
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        {{ certificate|capfirst }}
+    </li>
+{% endblock %}
+{% block page_title %}{% translate 'Delete Certificate' %}{% endblock %}

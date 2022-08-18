@@ -1,0 +1,18 @@
+{% extends 'portfolio/base/base_site.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Contact' %}{% endblock %}
+{% block main %}
+    <div class="container pt-4">
+        <div class="container-fluid">
+            <h1 class="display-1">
+                {% translate "Let's stay in touch" %}
+            </h1>
+            <p class="lead">
+                {% blocktranslate %}
+                    If you want to reach out, you can
+                    <a href="mailto:josephyousef@gmail.com">email</a> me.
+                {% endblocktranslate %}
+            </p>
+        </div>
+    </div>
+{% endblock %}

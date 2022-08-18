@@ -1,0 +1,11 @@
+{% extends 'portfolio/views/create/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Create Skill' %}{% endblock %}
+{% block breadcrumb_item %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'portfolio:skill_list' %}">
+            {% translate 'Skills' %}
+        </a>
+    </li>
+{% endblock %}
+{% block page_title %}{% translate 'Create Skill' %}{% endblock %}

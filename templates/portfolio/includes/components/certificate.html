@@ -1,0 +1,75 @@
+{% load i18n static %}
+<div class="card rounded-3 shadow">
+    {#    <embed src="{% static 'portfolio/BREEZE - The CRYENGINE Summer Academy returns_ - Teaser Trailer(720P_HD).mp4' %}"#}
+    {#           class="card-img-top"#}
+    {#           type="application/pdf">#}
+    <div class="card-body">
+        <h1 class="card-title text-danger fw-bold">
+            {{ certificate.name }}
+        </h1>
+        <div class="card-text">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div class="text-muted">
+                    {{ certificate.created_at|date }}
+                </div>
+                <span class="badge bg-{{ certificate.tag.color }}">
+                    {{ certificate.tag|capfirst }}
+                </span>
+                {% if request.user.is_superuser %}
+                    <div class="dropdown">
+                        <a href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">
+                                {% translate 'Certificate Menu' %}
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="{% url 'portfolio:edit_certificate' certificate.id %}"
+                                   class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-pencil"></i>
+                                    {% translate 'Edit' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="{% url 'portfolio:delete_certificate' certificate.id %}"
+                                   class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-trash"></i>
+                                    {% translate 'Delete' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-calendar2-plus"></i>
+                                    {{ certificate.created_at|timesince }}
+                                </span>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-calendar4-range"></i>
+                                    {{ certificate.updated_at|timesince }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <p>
+                {% translate 'Issued by' %}
+                <a href="{{ certificate.provider.url }}">
+                    {{ certificate.provider }}
+                </a>.
+            </p>
+            <p>
+                {% if certificate.expiration_date is None %}
+                    {% translate 'This certificate does not expire.' %}
+                {% else %}
+                    {% translate 'Expiration date:' %} {{ certificate.expiration_date }}.
+                {% endif %}
+            </p>
+            <a class="btn btn-lg d-block btn-danger" href="{{ certificate.credential }}">
+                {% translate 'Verify' %}
+            </a>
+        </div>
+    </div>
+</div>

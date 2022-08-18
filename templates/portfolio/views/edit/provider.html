@@ -1,0 +1,14 @@
+{% extends 'portfolio/views/edit/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Edit Provider' %}{% endblock %}
+{% block breadcrumb_item %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'portfolio:provider_list' %}">
+            {% translate 'Providers' %}
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        {{ provider|capfirst }}
+    </li>
+{% endblock %}
+{% block page_title %}{% translate 'Edit Provider' %}{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'portfolio/base/base_site.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Send a message' %}{% endblock %}
+{% block content %}
+    <h1 class="display-1">
+        {% translate 'Send a message' %}
+    </h1>
+    {% include 'portfolio/includes/utilties/form.html' with form_tag=1 method='post' floating_labels=1 submit_btn=1 %}
+{% endblock %}

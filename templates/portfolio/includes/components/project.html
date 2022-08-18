@@ -1,0 +1,67 @@
+{% load i18n %}
+<div class="card rounded-3 shadow">
+    {% if project.image %}
+        <img src="{% url 'portfolio:project_image' project.id %}" alt="{{ project.name }}" class="card-img-top">
+    {% endif %}
+    <div class="card-body">
+        <h1 class="card-title text-warning fw-bold">
+            {{ project.name }}
+        </h1>
+        <div class="card-text">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div class="text-muted">
+                    {{ project.created_at|date }}
+                </div>
+                {% with project.status as status %}
+                    <span class="badge bg-primary">
+                        {{ status }}
+                    </span>
+                {% endwith %}
+                {% if request.user.is_superuser %}
+                    <div class="dropdown">
+                        <a href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">
+                                {% translate 'Project Menu' %}
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="{% url 'portfolio:edit_project' project.id %}"
+                                   class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-pencil"></i>
+                                    {% translate 'Edit' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="{% url 'portfolio:delete_project' project.id %}"
+                                   class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-trash"></i>
+                                    {% translate 'Delete' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-calendar2-plus"></i>
+                                    {{ project.created_at|timesince }}
+                                </span>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-calendar4-range"></i>
+                                    {{ project.updated_at|timesince }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <p>
+                {{ project.about }}
+            </p>
+            <a class="btn btn-lg d-block btn-warning" href="{{ project.url }}">
+                {% translate 'Github' %}
+            </a>
+        </div>
+    </div>
+</div>

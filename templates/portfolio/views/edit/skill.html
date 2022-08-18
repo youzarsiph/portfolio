@@ -1,0 +1,14 @@
+{% extends 'portfolio/views/edit/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Edit Skill' %}{% endblock %}
+{% block breadcrumb_item %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'portfolio:skill_list' %}">
+            {% translate 'Skills' %}
+        </a>
+    </li>
+    <li class="breadcrumb-item active">
+        {{ skill.name|capfirst }}
+    </li>
+{% endblock %}
+{% block page_title %}{% translate 'Edit Skill' %}{% endblock %}

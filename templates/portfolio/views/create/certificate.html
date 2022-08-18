@@ -1,0 +1,11 @@
+{% extends 'portfolio/views/create/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Create Certificate' %}{% endblock %}
+{% block breadcrumb_item %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'portfolio:certificate_list' %}">
+            {% translate 'Certificates' %}
+        </a>
+    </li>
+{% endblock %}
+{% block page_title %}{% translate 'Create Certificate' %}{% endblock %}

@@ -1,0 +1,202 @@
+{% load i18n %}
+<aside class="navbar navbar-{{ color|default:'dark' }} bg-{{ bg_color|default:'primary' }} navbar-expand-{{ expand_at|default:'lg' }} align-items-lg-start h-100 rounded-3 shadow"
+       aria-label="Side bar">
+    <div class="container-fluid flex-lg-column align-items-lg-start h-100 w-100">
+        <button class="navbar-toggler rounded-circle p-2" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#sidebar"
+                aria-controls="sidebar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand me-0" href="#">
+            {% translate 'Dashboard' %}
+        </a>
+        <div class="navbar-nav d-lg-none">
+            <a class="nav-link px-3 p-lg-2{% if request.path == profile %} active{% endif %}"
+               href="{% url 'portfolio:profile' %}">
+                <i class="bi bi-person-circle"></i>
+            </a>
+        </div>
+        <div class="offcanvas offcanvas-end text-white bg-{{ bg_color|default:'primary' }}" tabindex="-1" id="sidebar"
+             aria-labelledby="sidebarLabel" style="width: 100% !important;">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="sidebarLabel">
+                    {% translate 'Dashboard' %}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column justify-content-between h-100">
+                <ul class="navbar-nav flex-lg-column w-100">
+                    <li class="nav-item">
+                        {% url 'portfolio:dashboard' as dashboard %}
+                        <a class="nav-link d-flex gap-4{% if request.path == dashboard %} active{% endif %}"
+                           href="{{ dashboard }}">
+                            <i class="bi bi-gear-fill"></i>
+                            {% translate 'Dashboard' %}
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex gap-4" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-stack"></i>
+                            {% translate 'Providers' %}
+                        </a>
+                        <div class="dropdown-menu position-lg-static rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Menu' %}
+                            </div>
+                            <a class="dropdown-item" href="{% url 'portfolio:provider_list' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-eye"></i>
+                                    {% translate 'View' %}
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="{% url 'portfolio:create_provider' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-plus-lg"></i>
+                                    {% translate 'Create' %}
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex gap-4" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-link"></i>
+                            {% translate 'Tags' %}
+                        </a>
+                        <div class="dropdown-menu position-lg-static rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Menu' %}
+                            </div>
+                            <a class="dropdown-item" href="{% url 'portfolio:tag_list' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-eye"></i>
+                                    {% translate 'View' %}
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="{% url 'portfolio:create_tag' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-plus-lg"></i>
+                                    {% translate 'Create' %}
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex gap-4" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-list-stars"></i>
+                            {% translate 'Certificates' %}
+                        </a>
+                        <div class="dropdown-menu position-lg-static rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Menu' %}
+                            </div>
+                            <a class="dropdown-item" href="{% url 'portfolio:certificate_list' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-eye"></i>
+                                    {% translate 'View' %}
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="{% url 'portfolio:create_certificate' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-plus-lg"></i>
+                                    {% translate 'Create' %}
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex gap-4" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-badge-fill"></i>
+                            {% translate 'Badges' %}
+                        </a>
+                        <div class="dropdown-menu position-lg-static rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Menu' %}
+                            </div>
+                            <a class="dropdown-item" href="{% url 'portfolio:badge_list' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-eye"></i>
+                                    {% translate 'View' %}
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="{% url 'portfolio:create_badge' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-plus-lg"></i>
+                                    {% translate 'Create' %}
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex gap-4" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-code-square"></i>
+                            {% translate 'Projects' %}
+                        </a>
+                        <div class="dropdown-menu position-lg-static rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Menu' %}
+                            </div>
+                            <a class="dropdown-item" href="{% url 'portfolio:project_list' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-eye"></i>
+                                    {% translate 'View' %}
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="{% url 'portfolio:create_project' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-plus-lg"></i>
+                                    {% translate 'Create' %}
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex gap-4" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-link"></i>
+                            {% translate 'Skills' %}
+                        </a>
+                        <div class="dropdown-menu position-lg-static rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Menu' %}
+                            </div>
+                            <a class="dropdown-item" href="{% url 'portfolio:skill_list' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-eye"></i>
+                                    {% translate 'View' %}
+                                </div>
+                            </a>
+                            <a class="dropdown-item" href="{% url 'portfolio:create_skill' %}">
+                                <div class="dropdown-item-text d-flex align-items-center gap-4">
+                                    <i class="bi bi-plus-lg"></i>
+                                    {% translate 'Create' %}
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-4" href="{% url 'portfolio:message_list' %}">
+                            <i class="bi bi-chat-fill"></i>
+                            {% translate 'Messages' %}
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item">
+                        {% url 'portfolio:profile' as profile %}
+                        <a class="nav-link d-flex gap-4{% if request.path == profile %} active{% endif %}"
+                           href="{{ profile }}">
+                            <i class="bi bi-person-circle"></i>
+                            {% translate 'Account' %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex gap-4" href="{% url 'portfolio:logout' %}">
+                            <i class="bi bi-power"></i>
+                            {% translate 'Log out' %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</aside>

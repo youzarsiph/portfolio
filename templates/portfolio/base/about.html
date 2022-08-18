@@ -1,0 +1,18 @@
+{% extends 'portfolio/base/base_site.html' %}
+{% load i18n %}
+{% block title %}{% translate 'About' %}{% endblock %}
+{% block main %}
+    <div class="container pt-4">
+        <div class="container-fluid">
+            <h1 class="display-1">
+                {% translate 'Who am I?' %}
+            </h1>
+            <p class="col-md-8 lead fs-4">
+                {% blocktranslate %}
+                    I am a software engineer working on various projects and I am currently learning AI,
+                    Mobile development. I love to learn, to explore various topics.
+                {% endblocktranslate %}
+            </p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'portfolio/views/create/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Create Badge' %}{% endblock %}
+{% block breadcrumb_item %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'portfolio:badge_list' %}">
+            {% translate 'Badges' %}
+        </a>
+    </li>
+{% endblock %}
+{% block page_title %}{% translate 'Create Badge' %}{% endblock %}

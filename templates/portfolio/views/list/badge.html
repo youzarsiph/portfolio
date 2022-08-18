@@ -1,0 +1,94 @@
+{% extends 'portfolio/views/list/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Badges' %}{% endblock %}
+{% block breadcrumb_item %}{% translate 'Badges' %}{% endblock %}
+{% block page_title %}{% translate 'Badges' %}{% endblock %}
+{% block create_link %}{% url 'portfolio:create_badge' %}{% endblock %}
+{% block table %}
+    <table class="table table-hover mb-0">
+        <thead>
+        <tr>
+            <th>
+                {% translate 'ID' %}
+            </th>
+            <th>
+                {% translate 'Name' %}
+            </th>
+            <th>
+                {% translate 'Provider' %}
+            </th>
+            <th>
+                {% translate 'URL' %}
+            </th>
+            <th>
+                {% translate 'Created' %}
+            </th>
+            <th>
+                {% translate 'Updated' %}
+            </th>
+            <th>
+                {% translate 'Actions' %}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for badge in badge_list %}
+            <tr>
+                <td>
+                    {{ badge.id }}
+                </td>
+                <td>
+                    {{ badge.name|capfirst }}
+                </td>
+                <td>
+                    {{ badge.provider }}
+                </td>
+                <td>
+                    <a href="{{ badge.url }}">
+                        {% translate 'View' %}
+                    </a>
+                </td>
+                <td>
+                    {{ badge.created_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    {{ badge.updated_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <a href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <div class="dropdown-menu rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Badge Menu' %}
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:edit_badge' badge.id %}">
+                                    <i class="bi bi-pencil"></i>
+                                    {% translate 'Edit' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:delete_badge' badge.id %}">
+                                    <i class="bi bi-trash"></i>
+                                    {% translate 'Delete' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="7" class="text-center">
+                    {% translate 'No badge found' %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block count %}{{ badge_list.count }} {% translate 'Badges' %}{% endblock %}

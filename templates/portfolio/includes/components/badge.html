@@ -1,0 +1,62 @@
+{% load i18n %}
+<div class="card rounded-3 shadow">
+    <div class="card-body">
+        <h1 class="card-title text-success fw-bold">
+            {{ badge.name }}
+        </h1>
+        <div class="card-text">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div class="text-muted">
+                    {{ badge.created_at|date }}
+                </div>
+                {% if request.user.is_superuser %}
+                    <div class="dropdown">
+                        <a href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-header">
+                                {% translate 'Badge Menu' %}
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="{% url 'portfolio:edit_badge' badge.id %}"
+                                   class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-pencil"></i>
+                                    {% translate 'Edit' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a href="{% url 'portfolio:delete_badge' badge.id %}"
+                                   class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-trash"></i>
+                                    {% translate 'Delete' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-calendar2-plus"></i>
+                                    {{ badge.created_at|timesince }}
+                                </span>
+                            </div>
+                            <div class="dropdown-item">
+                                <span class="dropdown-item-text d-flex gap-4">
+                                    <i class="bi bi-calendar4-range"></i>
+                                    {{ badge.updated_at|timesince }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <p>
+                {% translate 'Issued by' %}
+                <a href="{{ badge.provider.url }}">
+                    {{ badge.provider }}
+                </a>.
+            </p>
+            <a class="btn btn-lg d-block btn-success" href="{{ badge.url }}">
+                {% translate 'View' %}
+            </a>
+        </div>
+    </div>
+</div>

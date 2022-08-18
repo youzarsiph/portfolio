@@ -1,0 +1,35 @@
+{% extends 'portfolio/base/dashboard.html' %}
+{% load i18n %}
+{% block main_col_width %}9{% endblock %}
+{% block panel %}{% endblock %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">
+        {% block breadcrumb_item %}{% endblock %}
+    </li>
+{% endblock %}
+{% block content %}
+    <div class="card shadow rounded-3">
+        <div class="card-header d-flex align-items-center justify-content-between bg-white">
+            <h1 class="lead fs-1 mb-0">
+                {% block page_title %}{% endblock %}
+            </h1>
+            <a class="btn btn-primary d-inline-flex gap-4" href="{% block create_link %}{% endblock %}">
+                <i class="bi bi-plus-lg"></i>
+                {% translate 'New' %}
+            </a>
+        </div>
+        <div class="table-responsive">
+            {% block table %}{% endblock %}
+        </div>
+        <div class="card-footer d-flex align-items-center justify-content-between bg-white border-top-0">
+            <div class="text-muted">
+                {% block count %}{% endblock %}
+            </div>
+            <div>
+                {% if is_paginated %}
+                    {% include 'portfolio/includes/utilties/pagination.html' %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'portfolio/views/list/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Providers' %}{% endblock %}
+{% block breadcrumb_item %}{% translate 'Providers' %}{% endblock %}
+{% block page_title %}{% translate 'Providers' %}{% endblock %}
+{% block create_link %}{% url 'portfolio:create_provider' %}{% endblock %}
+{% block table %}
+    <table class="table table-hover mb-0">
+        <thead>
+        <tr>
+            <th>
+                {% translate 'ID' %}
+            </th>
+            <th>
+                {% translate 'Name' %}
+            </th>
+            <th>
+                {% translate 'URL' %}
+            </th>
+            <th>
+                {% translate 'Created' %}
+            </th>
+            <th>
+                {% translate 'Updated' %}
+            </th>
+            <th>
+                {% translate 'Actions' %}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for provider in provider_list %}
+            <tr>
+                <td>
+                    {{ provider.id }}
+                </td>
+                <td>
+                    {{ provider.name }}
+                </td>
+                <td>
+                    <a href="{{ provider.url }}">
+                        {% translate 'View' %}
+                    </a>
+                </td>
+                <td>
+                    {{ provider.created_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    {{ provider.updated_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <a href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <div class="dropdown-menu rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Provider Menu' %}
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:edit_provider' provider.id %}">
+                                    <i class="bi bi-pencil"></i>
+                                    {% translate 'Edit' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:delete_provider' provider.id %}">
+                                    <i class="bi bi-trash"></i>
+                                    {% translate 'Delete' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">
+                    {% translate 'No provider found' %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block count %}{{ provider_list.count }} {% translate 'Providers' %}{% endblock %}

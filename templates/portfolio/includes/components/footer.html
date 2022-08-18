@@ -1,0 +1,105 @@
+{% load i18n %}
+<div class="container-fluid mt-5">
+    <footer class="card card-body mb-3 rounded-3 shadow">
+        <a href="{% url 'portfolio:index' %}" class="h1 mb-4">
+            {% spaceless %}
+                <span class="fw-bold">
+                    <span class="text-primary">Y</span>
+                    <span class="text-danger">o</span>
+                    <span class="text-warning">u</span>
+                    <span class="text-primary">z</span>
+                    <span class="text-success">a</span>
+                    <span class="text-danger">r</span>
+                    <span class="text-primary">s</span>
+                    <span class="text-danger">i</span>
+                    <span class="text-warning">p</span>
+                    <span class="text-primary">h</span>
+                </span>
+            {% endspaceless %}
+        </a>
+        <div class="row g-4">
+            <div class="col-6 col-md-3 mb-3">
+                <h4 class="lead fs-4">
+                    {% translate 'Home' %}
+                </h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a href="{% url 'portfolio:index' %}" class="nav-link p-0 text-muted">
+                            {% translate 'Home' %}
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="{% url 'portfolio:public_certificate_list' %}" class="nav-link p-0 text-muted">
+                            {% translate 'Certificates' %}
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="{% url 'portfolio:public_badge_list' %}" class="nav-link p-0 text-muted">
+                            {% translate 'Badges' %}
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="{% url 'portfolio:public_project_list' %}" class="nav-link p-0 text-muted">
+                            {% translate 'Projects' %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-3 mb-3">
+                <h4 class="lead fs-4">
+                    {% translate 'About' %}
+                </h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a href="{% url 'portfolio:about' %}" class="nav-link p-0 text-muted">
+                            {% translate 'About Me' %}
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="{% url 'portfolio:contact' %}" class="nav-link p-0 text-muted">
+                            {% translate 'Contact' %}
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="mailto:" class="nav-link p-0 text-muted">
+                            {% translate 'Send an email' %}
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="#" class="nav-link p-0 text-muted">
+                            {% translate 'FAQs' %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% if message_form %}
+                <div class="col-md-5 offset-md-1 mb-3">
+                    <h5 class="lead fs-5">
+                        {% translate 'Have a question?' %}
+                    </h5>
+                    <p>
+                        {% translate 'Send a message and we will reply as soon as possible.' %}
+                    </p>
+                    <a href="{% url 'portfolio:send_message' %}" class="btn btn-lg btn-primary shadow rounded-3">
+                        {% translate 'Send Message' %}
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <p class="lead">
+                © {% translate '2022 Yousef Abu Shanab. All rights reserved.' %}
+            </p>
+            <ul class="list-unstyled d-flex mb-0">
+                <li class="ms-3">
+                <li class="ms-3">
+                    <a class="link-secondary" href="https://github.com/youzarsiph/">
+                        <i class="bi bi-github fs-3"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>

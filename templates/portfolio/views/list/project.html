@@ -1,0 +1,94 @@
+{% extends 'portfolio/views/list/template.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Projects' %}{% endblock %}
+{% block breadcrumb_item %}{% translate 'Projects' %}{% endblock %}
+{% block page_title %}{% translate 'Projects' %}{% endblock %}
+{% block create_link %}{% url 'portfolio:create_project' %}{% endblock %}
+{% block table %}
+    <table class="table table-hover mb-0">
+        <thead>
+        <tr>
+            <th>
+                {% translate 'ID' %}
+            </th>
+            <th>
+                {% translate 'Name' %}
+            </th>
+            <th>
+                {% translate 'Status' %}
+            </th>
+            <th>
+                {% translate 'URL' %}
+            </th>
+            <th>
+                {% translate 'Created' %}
+            </th>
+            <th>
+                {% translate 'Updated' %}
+            </th>
+            <th>
+                {% translate 'Actions' %}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for project in project_list %}
+            <tr>
+                <td>
+                    {{ project.id }}
+                </td>
+                <td>
+                    {{ project.name }}
+                </td>
+                <td>
+                    {{ project.status }}
+                </td>
+                <td>
+                    <a href="{{ project.url }}">
+                        {% translate 'View' %}
+                    </a>
+                </td>
+                <td>
+                    {{ project.created_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    {{ project.updated_at|timesince }} {% translate 'ago' %}
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <a href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <div class="dropdown-menu rounded-3 shadow">
+                            <div class="dropdown-header">
+                                {% translate 'Project Menu' %}
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:edit_project' project.id %}">
+                                    <i class="bi bi-pencil"></i>
+                                    {% translate 'Edit' %}
+                                </a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="dropdown-item-text d-flex gap-4"
+                                   href="{% url 'portfolio:delete_project' project.id %}">
+                                    <i class="bi bi-trash"></i>
+                                    {% translate 'Delete' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="7" class="text-center">
+                    {% translate 'No project found' %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block count %}{{ project_list.count }} {% translate 'Projects' %}{% endblock %}

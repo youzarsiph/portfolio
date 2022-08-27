@@ -1,11 +1,12 @@
 from django.urls import path
-from django.contrib.auth import views
 from portfolio.forms.main import *
 from portfolio.views.main import *
 from django.urls import reverse_lazy
+from django.contrib.auth import views
 
 app_name = 'portfolio'
-urlpatterns = [
+
+main_patterns = [
     # Main views
     # path('', IndexView.as_view(), name='index'),
     path('', PublicSkillListView.as_view(), name='index'),
@@ -59,7 +60,9 @@ urlpatterns = [
     path('skills/new/', SkillCreationView.as_view(), name='create_skill'),
     path('skills/<int:id>/edit/', SkillEditView.as_view(), name='edit_skill'),
     path('skills/<int:id>/delete/', SkillDeletionView.as_view(), name='delete_skill'),
+]
 
+auth_patterns = [
     # Custom Authentication
     path(
         'accounts/login/',
@@ -148,3 +151,5 @@ urlpatterns = [
         name='reset_complete'
     ),
 ]
+
+urlpatterns = main_patterns + auth_patterns

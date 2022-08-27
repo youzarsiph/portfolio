@@ -1,7 +1,7 @@
 from portfolio.models import *
+from portfolio.forms.main import *
 from django.contrib import messages
 from django.urls import reverse_lazy
-from portfolio.forms.main import *
 from django.contrib.auth.views import get_user_model
 from portfolio.views.generic import MessageRequiredEditView, RequestUser, LoginRequiredMixin, SuperUserMixin
 

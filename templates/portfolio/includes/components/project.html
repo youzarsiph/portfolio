@@ -59,9 +59,16 @@
             <p>
                 {{ project.about }}
             </p>
+        <div class="d-grid gap-4">
             <a class="btn btn-lg d-block btn-warning" href="{{ project.url }}">
                 {% translate 'Github' %}
             </a>
+            {% if project.demo_url %}
+                <a class="btn btn-lg d-block btn-outline-warning" href="{{ project.demo_url }}">
+                    {% translate 'Demo' %}
+                </a>
+            {% endif %}
+        </div>
         </div>
     </div>
 </div>

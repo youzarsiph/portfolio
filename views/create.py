@@ -1,9 +1,9 @@
 from portfolio.models import *
+from portfolio.forms.create import *
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
-from portfolio.forms.create import *
-from portfolio.views.generic import CreationView, MessageRequiredCreationView
 from portfolio.views.mixins import LoginRequiredMixin, SuperUserMixin
+from portfolio.views.generic import CreationView, MessageRequiredCreationView
 
 User = get_user_model()
 

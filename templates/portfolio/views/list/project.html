@@ -18,7 +18,10 @@
                 {% translate 'Status' %}
             </th>
             <th>
-                {% translate 'URL' %}
+                {% translate 'Repo URL' %}
+            </th>
+            <th>
+                {% translate 'Demo URL' %}
             </th>
             <th>
                 {% translate 'Created' %}
@@ -45,7 +48,12 @@
                 </td>
                 <td>
                     <a href="{{ project.url }}">
-                        {% translate 'View' %}
+                        {% translate 'View repo' %}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ project.demo_url }}">
+                        {% translate 'View demo' %}
                     </a>
                 </td>
                 <td>

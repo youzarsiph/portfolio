@@ -49,7 +49,7 @@ class BadgeCreationForm(StyledModelForm):
 class ProjectCreationForm(StyledModelForm):
     class Meta:
         model = Project
-        fields = ('name', 'about', 'status', 'url', 'image')
+        fields = ('name', 'about', 'status', 'url', 'demo_url', 'image')
 
 
 class SkillCreationForm(StyledModelForm):

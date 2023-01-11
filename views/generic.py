@@ -1,71 +1,20 @@
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from portfolio.views.mixins import *
+""" Generic views """
 
 
-class CreationView(TemplateNameMixin, CreateView):
-    """
-    CreateView with template set automatically according to folder structure.
-    """
-    parent_dir = 'create/'
-    extension = '.html'
-
-
-class DetailsView(TemplateNameMixin, DetailView):
-    """
-    DetailView with template set automatically according to folder structure.
-    """
-    pk_url_kwarg = 'id'
-    parent_dir = 'detail/'
-    extension = '.html'
-
-
-class ListingView(TemplateNameMixin, ListView):
-    """
-    ListView with template set automatically according to folder structure.
-    """
-    parent_dir = 'list/'
-    extension = '.html'
-
-
-class EditView(TemplateNameMixin, UpdateView):
-    """
-    UpdateView with template set automatically according to folder structure.
-    """
-    pk_url_kwarg = 'id'
-    parent_dir = 'edit/'
-    extension = '.html'
-
-
-class DeletionView(TemplateNameMixin, DeleteView):
-    """
-    DeleteView with template set automatically according to folder structure.
-    """
-    pk_url_kwarg = 'id'
-    parent_dir = 'delete/'
-    extension = '.html'
-
-    def get_success_url(self):
-        return reverse_lazy('portfolio:' + self.model._meta.verbose_name.lower() + '_list')
+from django.views.generic import CreateView, UpdateView, DeleteView
+from portfolio.views.mixins import (
+    MessageMixinCreateView, MessageMixinUpdateView, MessageMixinDeleteView
+)
 
 
 # Generic Views with Messages
-class MessageRequiredCreationView(MessageMixinCreateView, CreationView):
-    """
-    CreationView with messages.
-    You need to define success_message and error_message in subclasses.
-    """
+class MessageRequiredCreateView(MessageMixinCreateView, CreateView):
+    """ Base class for creating an object with messages """
 
 
-class MessageRequiredEditView(MessageMixinUpdateView, EditView):
-    """
-    EditView with messages.
-    You need to define success_message and error_message in subclasses.
-    """
+class MessageRequiredUpdateView(MessageMixinUpdateView, UpdateView):
+    """ Base class for updating an object with messages """
 
 
-class MessageRequiredDeletionView(MessageMixinDeleteView, DeletionView):
-    """
-    DeletionView with messages.
-    You need to define success_message and error_message in subclasses.
-    """
+class MessageRequiredDeleteView(MessageMixinDeleteView, DeleteView):
+    """ Base class for deleting an object with messages """

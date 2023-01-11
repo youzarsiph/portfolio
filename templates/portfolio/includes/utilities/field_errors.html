@@ -1,8 +1,6 @@
 {# Display field errors #}
 {% if field.errors %}
     {% for error in field.errors %}
-        <span class="badge bg-danger">
-                {{ error }}
-            </span>
+        <span class="badge bg-danger">{{ error }}</span>
     {% endfor %}
 {% endif %}

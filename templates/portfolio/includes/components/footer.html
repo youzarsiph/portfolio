@@ -1,7 +1,7 @@
 {% load i18n %}
-<div class="container-fluid mt-5">
-    <footer class="card card-body mb-3 rounded-3 shadow bg-dark text-white shadow-lg">
-        <a href="{% url 'portfolio:index' %}" class="h1 mb-4">
+<div class="mt-4">
+    <footer class="card card-body mb-3 rounded-3 shadow bg-dark text-white p-4 shadow-lg">
+        <a href="{% url 'portfolio:index' %}" class="display-4 mb-4">
             {% spaceless %}
                 <span class="fw-bold">
                     <span class="text-primary">Y</span>
@@ -81,25 +81,14 @@
                     <p>
                         {% translate 'Send a message and we will reply as soon as possible.' %}
                     </p>
-                    <a href="{% url 'portfolio:send_message' %}" class="btn btn-lg btn-primary shadow rounded-3">
-                        {% translate 'Send Message' %}
+                    <a href="{% url 'portfolio:send_message' %}" class="btn btn-outline-primary shadow">
+                        {% translate 'Send a message' %}
                     </a>
                 </div>
             {% endif %}
         </div>
-
-        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
-            <p class="lead">
-                © {% translate '2022 Yousef Abu Shanab. All rights reserved.' %}
-            </p>
-            <ul class="list-unstyled d-flex mb-0">
-                <li class="ms-3">
-                <li class="ms-3">
-                    <a class="link-secondary" href="https://github.com/youzarsiph/">
-                        <i class="bi bi-github fs-3"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <p class="small">
+            © {% translate '2022 Yousef Abu Shanab. All rights reserved.' %}
+        </p>
     </footer>
 </div>

@@ -1,33 +1,29 @@
 {% extends 'portfolio/authentication/base.html' %}
 {% load i18n %}
-{% block title %}{% translate 'Password Reset Complete' %}{% endblock %}
+{% block title %}{% translate 'Password Reset Complete' %}{% endblock %} 
 {% block breadcrumb %}
-    <li class="breadcrumb-item">
-        <a href="{% url 'portfolio:profile' %}">
-            {% translate 'Profile' %}
-        </a>
-    </li>
-    <li class="breadcrumb-item">
-        <a href="{% url 'portfolio:reset_password' %}">
-            {% translate 'Password Reset' %}
-        </a>
-    </li>
-    <li class="breadcrumb-item">
-        {% translate 'Complete' %}
-    </li>
+  <li class="breadcrumb-item">
+    <a href="{% url 'portfolio:profile' %}"> {% translate 'Profile' %} </a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="{% url 'portfolio:reset_password' %}">
+      {% translate 'Password Reset' %}
+    </a>
+  </li>
+  <li class="breadcrumb-item">{% translate 'Complete' %}</li>
 {% endblock %}
 {% block content %}
-    <div class="p-5 border rounded-3">
-        <div class="container-fluid py-5">
-            <h1 class="display-1">
-                {% translate 'Password reset complete' %}
-            </h1>
-            <p class="fs-4">
-                {% translate 'Your password has been set. You may go ahead and log in now.' %}
-            </p>
-            <a class="btn btn-primary btn-lg" role="button" href="{% url 'portfolio:login' %}">
-                {% translate 'Login' %}
-            </a>
-        </div>
-    </div>
+  <h1 class="display-1">
+    <strong> {% translate 'Password reset complete' %} </strong>
+  </h1>
+  <p>
+    {% translate 'Your password has been set. You may go ahead and log in now.' %}
+  </p>
+  <a
+    href="{% url 'portfolio:login' %}"
+    class="btn btn-lg btn-primary px-5"
+    role="button"
+  >
+    {% translate 'Login' %}
+</a>
 {% endblock %}

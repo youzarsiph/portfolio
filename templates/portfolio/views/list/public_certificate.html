@@ -1,32 +1,37 @@
 {% extends 'portfolio/base/base_site.html' %}
-{% load i18n %}
-{% block title %}{% translate 'My Certificates' %}{% endblock %}
+{% load i18n %} {% block title %}{% translate 'My Certificates' %}{% endblock %} 
 {% block content %}
-    <div class="d-grid gap-4 d-lg-flex align-items-center justify-content-lg-between mb-4">
-        <h1 class="display-1 mb-0">
-            {% translate 'My Certificates' %}
-        </h1>
-        {% if request.user.is_superuser %}
-            <a class="btn btn-lg btn-danger d-flex gap-4" href="{% url 'portfolio:create_certificate' %}">
-                <i class="bi bi-plus-lg"></i>
-                {% translate 'New' %}
-            </a>
-        {% endif %}
-    </div>
-    <div class="row g-4">
-        {% for certificate in certificate_list %}
-            <div class="col-12 col-md-6 col-lg-4">
-                {% include 'portfolio/includes/components/certificate.html' %}
-            </div>
-        {% empty %}
-            <div class="col-12">
-                <h1 class="text-center">
-                    {% translate 'We are sorry, the website under maintenance.' %}
-                </h1>
-            </div>
-        {% endfor %}
-    </div>
-    {% if is_paginated %}
-        {% include 'portfolio/includes/utilties/pagination.html' %}
+  <div
+    class="d-grid gap-4 d-lg-flex align-items-center justify-content-lg-between mb-4"
+  >
+    <h1 class="display-1 mb-0">{% translate 'My Certificates' %}</h1>
+    {% if request.user.is_superuser %}
+      <a
+        class="btn btn-lg btn-danger d-flex gap-4"
+        href="{% url 'portfolio:create_certificate' %}"
+      >
+        <i class="bi bi-plus-lg"></i>
+        {% translate 'New' %}
+      </a>
     {% endif %}
+  </div>
+  <div class="row g-4">
+    {% for certificate in certificate_list %}
+      <div class="col-12 col-md-6 col-lg-4">
+        {% include 'portfolio/includes/components/certificate.html' %}
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <h2 class="text-center">{% translate 'Coming soon' %}</h2>
+      </div>
+    {% endfor %}
+  </div>
+  {% if is_paginated %}
+    {% include 'portfolio/includes/utilities/pagination.html' %}
+  {% endif %}
+{% endblock %}
+{% block footer %}
+  <div class="container-fluid">
+    {% include 'portfolio/includes/components/footer.html' with message_form=1 %}
+  </div>
 {% endblock %}

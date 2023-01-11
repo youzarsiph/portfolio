@@ -1,23 +1,13 @@
+""" Data models """
+
+
 from django.db import models
-from django.urls import reverse_lazy
-
-
-class BaseModel:
-    """
-    A mixin class to provide get_absolute_url method to model classes following the convention.
-    Requires ListView names to be modelName_list.
-    """
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        suffix = self._meta.verbose_name.lower()
-        return reverse_lazy('portfolio:' + suffix + '_list')
 
 
 # Create your models here.
-class Provider(BaseModel, models.Model):
+class Provider(models.Model):
+    """ Provider model """
+
     name = models.CharField(
         max_length=64,
         unique=True,
@@ -30,7 +20,9 @@ class Provider(BaseModel, models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Tag(BaseModel, models.Model):
+class Tag(models.Model):
+    """ Tag model """
+
     name = models.CharField(
         max_length=128,
         unique=True,
@@ -52,7 +44,9 @@ class Tag(BaseModel, models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Certificate(BaseModel, models.Model):
+class Certificate(models.Model):
+    """ Certificate model """
+
     tag = models.ForeignKey(
         Tag,
         on_delete=models.SET_NULL,
@@ -89,7 +83,9 @@ class Certificate(BaseModel, models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Badge(BaseModel, models.Model):
+class Badge(models.Model):
+    """ Badge model """
+
     provider = models.ForeignKey(
         Provider,
         on_delete=models.SET_NULL,
@@ -111,7 +107,9 @@ class Badge(BaseModel, models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Project(BaseModel, models.Model):
+class Project(models.Model):
+    """ Project model """
+
     name = models.CharField(
         max_length=64,
         unique=True,
@@ -149,7 +147,9 @@ class Project(BaseModel, models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Skill(BaseModel, models.Model):
+class Skill(models.Model):
+    """ Skill model """
+
     name = models.CharField(
         max_length=64,
         unique=True,
@@ -160,6 +160,8 @@ class Skill(BaseModel, models.Model):
 
 
 class Message(models.Model):
+    """ Message model """
+
     name = models.CharField(
         max_length=128,
         help_text='Your full name. (Required)'

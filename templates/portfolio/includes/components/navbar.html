@@ -1,132 +1,210 @@
 {% load i18n %}
-<nav class="navbar navbar-{{ color|default:'dark' }} bg-{{ bg_color|default:'primary' }} navbar-expand-{{ expand_at|default:'lg' }} p-3 rounded-3 shadow">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'portfolio:index' %}">
-            {% spaceless %}
-                <span class="fw-bold">
-                    <span class="text-white">Y</span>
-                    <span class="text-danger">o</span>
-                    <span class="text-warning">u</span>
-                    <span class="text-white">z</span>
-                    <span class="text-success">a</span>
-                    <span class="text-danger">r</span>
-                    <span class="text-white">s</span>
-                    <span class="text-danger">i</span>
-                    <span class="text-warning">p</span>
-                    <span class="text-white">h</span>
-                </span>
-            {% endspaceless %}
-        </a>
-        <button class="navbar-toggler collapsed p-2 rounded-circle" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbar">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    {% url 'portfolio:index' as home %}
-                    <a class="nav-link d-flex gap-4 gap-lg-2{% if request.path == home %} active{% endif %}"
-                       href="{{ home }}">
-                        <i class="bi bi-house-fill"></i>
-                        {% translate 'Home' %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    {% url 'portfolio:public_certificate_list' as certificates %}
-                    <a class="nav-link d-flex gap-4 gap-lg-2{% if request.path == certificates %} active{% endif %}"
-                       href="{{ certificates }}">
-                        <i class="bi bi-list-stars"></i>
-                        {% translate 'Certificates' %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    {% url 'portfolio:public_badge_list' as badges %}
-                    <a class="nav-link d-flex gap-4 gap-lg-2{% if request.path == badges %} active{% endif %}"
-                       href="{{ badges }}">
-                        <i class="bi bi-person-badge-fill"></i>
-                        {% translate 'Badges' %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    {% url 'portfolio:public_project_list' as projects %}
-                    <a class="nav-link d-flex gap-4 gap-lg-2{% if request.path == projects %} active{% endif %}"
-                       href="{{ projects }}">
-                        <i class="bi bi-journal-code"></i>
-                        {% translate 'Projects' %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    {% url 'portfolio:about' as about %}
-                    <a class="nav-link d-flex gap-4 gap-lg-2{% if request.path == about %} active{% endif %}"
-                       href="{{ about }}">
-                        <i class="bi bi-info-circle-fill"></i>
-                        {% translate 'About' %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    {% url 'portfolio:contact' as contact %}
-                    <a class="nav-link d-flex gap-4 gap-lg-2{% if request.path == contact %} active{% endif %}"
-                       href="{{ contact }}">
-                        <i class="bi bi-envelope-fill"></i>
-                        {% translate 'Contact' %}
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link d-flex gap-4 gap-lg-2" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle"></i>
-                        {% translate 'Profile' %}
-                    </a>
-                    <div class="dropdown-menu rounded-3 shadow">
-                        <div class="dropdown-header">
-                            {% translate 'Account Menu' %}
-                        </div>
-                        <a class="dropdown-item" href="{% url 'portfolio:profile' %}">
-                            <div class="dropdown-item-text d-flex gap-4">
-                                <i class="bi bi-person"></i>
-                                {% translate 'Account' %}
-                            </div>
-                        </a>
-                        {% if request.user.is_superuser %}
-                            <a class="dropdown-item" href="{% url 'portfolio:dashboard' %}">
-                                <div class="dropdown-item-text d-flex gap-4">
-                                    <i class="bi bi-gear"></i>
-                                    {% translate 'Dashbaord' %}
-                                </div>
-                            </a>
-                        {% endif %}
-                        {% if request.user.is_authenticated %}
-                            <a class="dropdown-item" href="{% url 'portfolio:logout' %}">
-                                <div class="dropdown-item-text d-flex gap-4">
-                                    <i class="bi bi-power"></i>
-                                    {% translate 'Logout' %}
-                                </div>
-                            </a>
-                        {% else %}
-                            <a class="dropdown-item" href="{% url 'portfolio:login' %}">
-                                <div class="dropdown-item-text d-flex gap-4">
-                                    <i class="bi bi-box-arrow-in-right"></i>
-                                    {% translate 'Login' %}
-                                </div>
-                            </a>
-                        {% endif %}
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex gap-4 gap-lg-2" href="https://github.com/youzarsiph/">
-                        <i class="bi bi-github"></i>
-                        {% translate 'Github' %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    {# Todo: Insert LinkedIn link to your profile #}
-                    <a class="nav-link d-flex gap-4 gap-lg-2" href="https://www.linkedin.com/in/youzarsiph/">
-                        <i class="bi bi-linkedin"></i>
-                        {% translate 'LinkedIn' %}
-                    </a>
-                </li>
-            </ul>
-        </div>
+<nav
+  class="navbar navbar-{{ color|default:'dark' }} bg-{{ bg_color|default:'primary' }} navbar-expand-{{ expand_at|default:'lg' }} p-3 rounded-3 shadow"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'portfolio:index' %}">
+      {% spaceless %}
+        <span class="fw-bold">
+          <span class="text-white">Y</span>
+          <span class="text-danger">o</span>
+          <span class="text-warning">u</span>
+          <span class="text-white">z</span>
+          <span class="text-success">a</span>
+          <span class="text-danger">r</span>
+          <span class="text-white">s</span>
+          <span class="text-danger">i</span>
+          <span class="text-warning">p</span>
+          <span class="text-white">h</span>
+        </span>
+      {% endspaceless %}
+    </a>
+    <button
+      class="navbar-toggler collapsed p-2 rounded-circle"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar"
+      aria-controls="navbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          {% url 'portfolio:index' as home %}
+          <a
+            class="nav-link d-flex gap-4 gap-lg-2{% if request.path == home %} active{% endif %}"
+            href="{{ home }}"
+          >
+            <i class="bi bi-house-fill"></i>
+            {% translate 'Home' %}
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'portfolio:public_certificate_list' as certificates %}
+          <a
+            class="nav-link d-flex gap-4 gap-lg-2{% if request.path == certificates %} active{% endif %}"
+            href="{{ certificates }}"
+          >
+            <i class="bi bi-list-stars"></i>
+            {% translate 'Certificates' %}
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'portfolio:public_badge_list' as badges %}
+          <a
+            class="nav-link d-flex gap-4 gap-lg-2{% if request.path == badges %} active{% endif %}"
+            href="{{ badges }}"
+          >
+            <i class="bi bi-person-badge-fill"></i>
+            {% translate 'Badges' %}
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'portfolio:public_project_list' as projects %}
+          <a
+            class="nav-link d-flex gap-4 gap-lg-2{% if request.path == projects %} active{% endif %}"
+            href="{{ projects }}"
+          >
+            <i class="bi bi-journal-code"></i>
+            {% translate 'Projects' %}
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'portfolio:about' as about %}
+          <a
+            class="nav-link d-flex gap-4 gap-lg-2{% if request.path == about %} active{% endif %}"
+            href="{{ about }}"
+          >
+            <i class="bi bi-info-circle-fill"></i>
+            {% translate 'About' %}
+          </a>
+        </li>
+        <li class="nav-item">
+          {% url 'portfolio:contact' as contact %}
+          <a
+            class="nav-link d-flex gap-4 gap-lg-2{% if request.path == contact %} active{% endif %}"
+            href="{{ contact }}"
+          >
+            <i class="bi bi-envelope-fill"></i>
+            {% translate 'Contact' %}
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link d-flex gap-4 gap-lg-2"
+            href="#"
+            data-bs-toggle="dropdown"
+          >
+            <i class="bi bi-person-circle"></i>
+            {% translate 'Profile' %}
+          </a>
+          <div class="dropdown-menu rounded-3 shadow">
+            <div class="dropdown-header">{% translate 'Account Menu' %}</div>
+            <a class="dropdown-item" href="{% url 'portfolio:profile' %}">
+              <div class="dropdown-item-text d-flex gap-4">
+                <i class="bi bi-person"></i>
+                {% translate 'Account' %}
+              </div>
+            </a>
+            {% if request.user.is_superuser %}
+              <a class="dropdown-item" href="{% url 'portfolio:dashboard' %}">
+                <div class="dropdown-item-text d-flex gap-4">
+                  <i class="bi bi-gear"></i>
+                  {% translate 'Dashbaord' %}
+                </div>
+              </a>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+              <a class="dropdown-item" href="{% url 'portfolio:logout' %}">
+                <div class="dropdown-item-text d-flex gap-4">
+                  <i class="bi bi-power"></i>
+                  {% translate 'Logout' %}
+                </div>
+              </a>
+            {% else %}
+              <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalSignin">
+                <div class="dropdown-item-text d-flex gap-4">
+                  <i class="bi bi-box-arrow-in-right"></i>
+                  {% translate 'Login' %}
+                </div>
+              </a>
+            {% endif %}
+          </div>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link d-flex gap-4 gap-lg-2"
+            href="https://github.com/youzarsiph/"
+          >
+            <i class="bi bi-github"></i>
+            {% translate 'Github' %}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link d-flex gap-4 gap-lg-2"
+            href="https://www.linkedin.com/in/youzarsiph/"
+          >
+            <i class="bi bi-linkedin"></i>
+            {% translate 'LinkedIn' %}
+          </a>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
+<div tabindex="-1" role="dialog" id="modalSignin" class="modal py-5">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow bg-dark text-white">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h2 class="fw-bold mb-0">{% translate 'Log In' %}</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body p-5 pt-0">
+        <form action="{% url 'portfolio:login' %}" method="post">
+          {% csrf_token %}
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              name="username"
+              class="form-control bg-dark text-white rounded-3"
+              id="floatingInput"
+              placeholder="name@example.com"
+            />
+            <label for="floatingInput">{% translate 'Username' %}</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="password"
+              name="password"
+              class="form-control bg-dark text-white rounded-3"
+              id="floatingPassword"
+              placeholder="Password"
+            />
+            <label for="floatingPassword">{% translate 'Password' %}</label>
+          </div>
+          <button
+            class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-primary"
+            type="submit"
+          >
+            {% translate 'Login' %}
+          </button>
+          <small class="text-muted">
+            {% translate 'By clicking Sign in, you agree to the terms of use.' %}
+          </small>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

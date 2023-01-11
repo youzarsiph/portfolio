@@ -16,3 +16,9 @@
         </div>
     </div>
 {% endblock %}
+
+{% block footer %}
+    <div class="container-fluid">
+        {% include 'portfolio/includes/components/footer.html' with message_form=1 %}
+    </div>
+{% endblock %}

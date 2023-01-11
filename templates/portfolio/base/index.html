@@ -35,16 +35,18 @@
                             Currently, I am learning UX design, AI and mobile development.
                         {% endblocktranslate %}
                     </p>
-                    <h2>
-                        {% translate 'My Skills' %}
-                    </h2>
-                    <div class="d-flex gap-4 flex-wrap">
-                        {% for skill in skill_list %}
+                    {% if skill_list %}
+                        <h2>
+                            {% translate 'My Skills' %}
+                        </h2>
+                        <div class="d-flex gap-4 flex-wrap">
+                            {% for skill in skill_list %}
                             <span class="badge bg-{% cycle 'primary' 'danger' 'warning' 'primary' 'success' 'danger' 'primary' 'danger' 'warning' 'primary' %} shadow-sm px-3 py-2">
                                 {{ skill.name }}
                             </span>
-                        {% endfor %}
-                    </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-12 col-lg-6 p-3 p-md-4 p-lg-5">
@@ -56,5 +58,7 @@
 {% endblock %}
 
 {% block footer %}
-    {% include 'portfolio/includes/components/footer.html' with message_form=1 %}
+    <div class="container-fluid">
+        {% include 'portfolio/includes/components/footer.html' with message_form=1 %}
+    </div>
 {% endblock %}

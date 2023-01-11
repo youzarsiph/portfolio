@@ -1,10 +1,17 @@
-from portfolio.forms.base import StyledModelForm
+""" Update forms """
+
 from django.contrib.auth.views import get_user_model
+
+from portfolio.forms.base import StyledModelForm
 
 User = get_user_model()
 
 
-class UserEditForm(StyledModelForm):
+class UserUpdateForm(StyledModelForm):
+    """ User edit form """
+
     class Meta:
+        """ Meta data """
+
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')

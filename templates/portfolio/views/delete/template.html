@@ -1,22 +1,19 @@
 {% extends 'portfolio/base/dashboard.html' %}
-{% load i18n %}
-{% block title %}{% translate 'Delete ' %}{% endblock %}
+{% load i18n %}{% block title %}{% translate 'Delete ' %}{% endblock %}
 {% block breadcrumb %}
-    {% block breadcrumb_item %}{% endblock %}
+  {% block breadcrumb_item %}{% endblock %}
     <li class="breadcrumb-item active">
-        <i class="bi bi-trash"></i>
-        {% translate 'Delete' %}
+      <i class="bi bi-trash"></i>
+      {% translate 'Delete' %}
     </li>
 {% endblock %}
 {% block content %}
-    <h1 class="display-1">
-        {% block page_title %}{% translate 'Delete' %}{% endblock %}
-    </h1>
-    <p>
-        {% translate 'Are you sure you awnt to delete?' %}
-    </p>
-    {% include 'portfolio/includes/utilties/form.html' with form_tag=1 method='post' %}
-    {% block buttons %}
-        {% include 'portfolio/includes/utilties/submit.html' %}
-    {% endblock %}
+  <h1 class="display-1">
+    {% block page_title %}{% translate 'Delete' %}{% endblock %}
+  </h1>
+  <p>{% translate 'Are you sure you awnt to delete?' %}</p>
+  {% include 'portfolio/includes/utilities/form.html' with form_tag=1 method='post' %}
+  {% block buttons %}
+    {% include 'portfolio/includes/utilities/submit.html' %}
+  {% endblock %}
 {% endblock %}

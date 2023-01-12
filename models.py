@@ -19,6 +19,11 @@ class Provider(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self) -> str:
+        """ String presentation """
+
+        return self.name
+
 
 class Tag(models.Model):
     """ Tag model """
@@ -43,6 +48,11 @@ class Tag(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self) -> str:
+        """ String presentation """
+
+        return self.name
+
 
 class Certificate(models.Model):
     """ Certificate model """
@@ -52,14 +62,14 @@ class Certificate(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        help_text='Select the learning product.'
+        help_text='Select the learning product. (Required)'
     )
     provider = models.ForeignKey(
         Provider,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        help_text='Select the course provider'
+        help_text='Select the course provider (Required)'
     )
     name = models.CharField(
         max_length=128,
@@ -82,6 +92,11 @@ class Certificate(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self) -> str:
+        """ String presentation """
+
+        return self.name
+
 
 class Badge(models.Model):
     """ Badge model """
@@ -92,7 +107,7 @@ class Badge(models.Model):
         null=True,
         blank=True,
         verbose_name='Issued by',
-        help_text='Select provider of the badge.'
+        help_text='Select provider of the badge. (Required)'
     )
     name = models.CharField(
         max_length=64,
@@ -105,6 +120,11 @@ class Badge(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        """ String presentation """
+
+        return self.name
 
 
 class Project(models.Model):
@@ -146,6 +166,11 @@ class Project(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self) -> str:
+        """ String presentation """
+
+        return self.name
+
 
 class Skill(models.Model):
     """ Skill model """
@@ -157,6 +182,11 @@ class Skill(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        """ String presentation """
+
+        return self.name
 
 
 class Message(models.Model):
@@ -175,3 +205,8 @@ class Message(models.Model):
         help_text='Your message. (Required)'
     )
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        """ String presentation """
+
+        return self.name + ': ' + self.email

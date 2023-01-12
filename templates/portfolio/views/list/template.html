@@ -6,9 +6,9 @@
   </li>
 {% endblock %}
 {% block content %}
-  <div class="card shadow rounded-3">
+  <div class="card bg-dark text-white shadow rounded-3">
     <div
-      class="card-header d-flex align-items-center justify-content-between bg-white"
+      class="card-header bg-dark text-white p-4 d-flex align-items-center justify-content-between"
     >
       <h1 class="lead fs-1 mb-0">{% block page_title %}{% endblock %}</h1>
       <a
@@ -21,7 +21,7 @@
     </div>
     <div class="table-responsive">{% block table %}{% endblock %}</div>
     <div
-      class="card-footer d-flex align-items-center justify-content-between bg-white border-top-0"
+      class="card-footer bg-dark text-white p-4 d-flex align-items-center justify-content-between border-top-0"
     >
       <div class="text-muted">{% block count %}{% endblock %}</div>
       <div>

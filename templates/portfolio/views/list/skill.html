@@ -5,7 +5,7 @@
 {% block page_title %}{% translate 'Skills' %}{% endblock %}
 {% block create_link %}{% url 'portfolio:create_skill' %}{% endblock %}
 {% block table %}
-    <table class="table table-hover mb-0">
+    <table class="table table-dark table-hover mb-0">
         <thead>
         <tr>
             <th>
@@ -35,35 +35,21 @@
                     {{ skill.name|capfirst }}
                 </td>
                 <td>
-                    {{ skill.created_at|timesince }} {% translate 'ago' %}
+                    {{ skill.created_at }}
                 </td>
                 <td>
-                    {{ skill.updated_at|timesince }} {% translate 'ago' %}
+                    {{ skill.updated_at }}
                 </td>
                 <td>
-                    <div class="dropdown">
-                        <a href="#" data-bs-toggle="dropdown">
-                            <i class="bi bi-three-dots"></i>
+                    <div class="d-flex align-items-center gap-4">
+                        <a class="link-warning" href="{% url 'portfolio:edit_skill' skill.id %}">
+                            <i class="bi bi-pencil"></i>
+                            {% translate 'Edit' %}
                         </a>
-                        <div class="dropdown-menu rounded-3 shadow">
-                            <div class="dropdown-header">
-                                {% translate 'Skill Menu' %}
-                            </div>
-                            <div class="dropdown-item">
-                                <a class="dropdown-item-text d-flex gap-4"
-                                   href="{% url 'portfolio:edit_skill' skill.id %}">
-                                    <i class="bi bi-pencil"></i>
-                                    {% translate 'Edit' %}
-                                </a>
-                            </div>
-                            <div class="dropdown-item">
-                                <a class="dropdown-item-text d-flex gap-4"
-                                   href="{% url 'portfolio:delete_skill' skill.id %}">
-                                    <i class="bi bi-trash"></i>
-                                    {% translate 'Delete' %}
-                                </a>
-                            </div>
-                        </div>
+                        <a class="link-danger" href="{% url 'portfolio:delete_skill' skill.id %}">
+                            <i class="bi bi-trash"></i>
+                            {% translate 'Delete' %}
+                        </a>
                     </div>
                 </td>
             </tr>

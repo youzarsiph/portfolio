@@ -1,5 +1,5 @@
 {% load i18n static %}
-<div class="card rounded-3 shadow">
+<article class="card rounded-3 shadow">
     <div class="card-body">
         <h1 class="card-title text-danger fw-bold">
             {{ certificate.name }}
@@ -9,47 +9,37 @@
                 <div class="text-muted">
                     {{ certificate.created_at|date }}
                 </div>
-                <span class="badge bg-{{ certificate.tag.color }}">
-                    {{ certificate.tag|capfirst }}
-                </span>
                 {% if request.user.is_superuser %}
                     <div class="dropdown">
                         <a href="#" data-bs-toggle="dropdown">
                             <i class="bi bi-three-dots"></i>
                         </a>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-header">
+                        <ul class="dropdown-menu rounded-3 shadow">
+                            <li class="dropdown-header">
                                 {% translate 'Certificate Menu' %}
-                            </div>
-                            <div class="dropdown-item">
+                            </li>
+                            <li class="dropdown-item">
                                 <a href="{% url 'portfolio:edit_certificate' certificate.id %}"
                                    class="dropdown-item-text d-flex gap-4">
                                     <i class="bi bi-pencil"></i>
                                     {% translate 'Edit' %}
                                 </a>
-                            </div>
-                            <div class="dropdown-item">
+                            </li>
+                            <li class="dropdown-item">
                                 <a href="{% url 'portfolio:delete_certificate' certificate.id %}"
                                    class="dropdown-item-text d-flex gap-4">
                                     <i class="bi bi-trash"></i>
                                     {% translate 'Delete' %}
                                 </a>
-                            </div>
-                            <div class="dropdown-item">
-                                <span class="dropdown-item-text d-flex gap-4">
-                                    <i class="bi bi-calendar2-plus"></i>
-                                    {{ certificate.created_at|timesince }}
-                                </span>
-                            </div>
-                            <div class="dropdown-item">
-                                <span class="dropdown-item-text d-flex gap-4">
-                                    <i class="bi bi-calendar4-range"></i>
-                                    {{ certificate.updated_at|timesince }}
-                                </span>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 {% endif %}
+            </div>
+            <div class="text-end">
+                <small class="badge bg-{{ certificate.tag.color }}">
+                    {{ certificate.tag|capfirst }}
+                </small>
             </div>
             <p>
                 {% translate 'Issued by' %}
@@ -69,4 +59,4 @@
             </a>
         </div>
     </div>
-</div>
+</article>
